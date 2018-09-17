@@ -6,19 +6,19 @@
 <link rel="stylesheet" href="style.css">
 <script src="style.js"></script>
 </head>
-<body>
+<body onload="loadGallery()">
 <div id="wrapper">
 
     <div id="header">
-        <span style="float:left">JQUERY Slideshow with Vanilla Javascript</span>
-        <span style="float:right">(Hover center of image for controls)</span>
-        
+        <span style="float:left">SLIDESHOW with Vanilla Javascript</span>
+        <span style="float:right">(Hover center of image for controls)</span>  
     </div>
 
     <div id="content">
     
         <div id="slideshow">
             <img id="image" src="assets/images/LA_pch (4).jpg" onclick="zoomImage()">
+
             <div id="controls">
                 <a id="prev" onclick="prevImage()">
                     <img src="assets/images/Icon_left.png">
@@ -28,6 +28,9 @@
                     <img src="assets/images/Icon_right.png">
                 </a>
             </div>
+            <div id="gallery">
+            </div>
+
         </div>
 
     </div>    

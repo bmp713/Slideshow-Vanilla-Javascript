@@ -5,40 +5,51 @@ var images = [
     'LA_venice (2).jpg',
     'mammoth (6).jpg',
     'tahoe (4).jpg',
-    'LA_santa_monica.jpeg',
-    'tahoe (8).jpg'
+    'tahoe (8).jpg',
+    'LA_santa_monica.jpeg'
 ];
+
+// Initialize image array to include path
 for( image in images ){
     images[image] = '/assets/images/' + images[image];
-    console.log("images[image] = " + images[image] );
+}
+
+// Load images into gallery from array or file
+function loadGallery(){
+    for( image in images ){
+        var node = document.createElement('IMG');
+        var gallery = document.querySelector('#gallery');
+
+        node.src = images[image];
+        gallery.appendChild( node );
+
+        node.addEventListener("click", function(){
+            changeImage( this.src );
+        });
+    }
+}
+
+function changeImage( elementID ){
+    document.querySelector('#image').style.opacity = "0";
+
+    setTimeout(function(){ 
+        document.querySelector('#image').src = elementID;
+    }, 1000);
+    setTimeout(function(){ 
+        document.querySelector('#image').style.opacity = "1";
+    }, 1000);
 }
 
 function nextImage(){
-    document.querySelector('#image').style.opacity = "0";
-
-    setTimeout(function(){ 
-        i++;
-        if( i > images.length-2 ) i = 0;
-        document.querySelector('#image').src = images[i];
-        console.log("images["+ i +"] = " + images[i] );
-    }, 1500);
-    setTimeout(function(){ 
-         document.querySelector('#image').style.opacity = "1";
-    }, 1500);
+    i++
+    if( i > images.length - 2 ) i = 0;
+    changeImage( images[i] );
 }
 
 function prevImage(){
-    document.querySelector('#image').style.opacity = "0";
-
-    setTimeout(function(){ 
-        i--;
-        if( i < 0 ) i = images.length-1;
-        console.log("index = " + i);
-        document.querySelector('#image').src = images[i];
-    }, 1500);
-    setTimeout(function(){ 
-         document.querySelector('#image').style.opacity = "1";
-    }, 1500);
+    i--;
+    if( i < 0 ) i = images.length - 1;
+    changeImage( images[i] );
 }
 
 var zoom = false;
@@ -52,7 +63,6 @@ function zoomImage(){
         zoom = false;
         document.querySelector('#image').style.height = '70%';
         document.querySelector('#image').style.boxShadow = '10px 10px 10px black';
-
     }
 }
 
